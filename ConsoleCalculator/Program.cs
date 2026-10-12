@@ -1,4 +1,6 @@
-﻿Console.WriteLine("Enter the first number:");
+﻿do
+{
+    Console.WriteLine("Enter the first number:");
     int firstNumber = ReadNumberFromConsole();
 
     Console.WriteLine("Enter the second number:");
@@ -8,8 +10,10 @@
     char operation = ReadOperationFromConsole();
 
     Calculate(firstNumber, secondNumber, operation);
+}
+while (AskToContinue());
 
-    static int ReadNumberFromConsole()
+static int ReadNumberFromConsole()
 {
     int number;
     while (true)
@@ -70,5 +74,25 @@ static void Calculate(int firstNumber, int secondNumber, char operation)
         default:
             Console.WriteLine("Invalid operation. Please enter one of the following: +, -, *, /");
             break;
+    }
+}
+
+static bool AskToContinue()
+{
+    while (true)
+    {
+        Console.Write("Do you want to perform another calculation? (y/n): ");
+        string input = Console.ReadLine();
+        switch (input.ToLower())
+        {
+            case "y":
+                return true;
+            case "n":
+                Console.WriteLine("Have a nice day!");
+                return false;
+            default:
+                Console.WriteLine("Invalid input. Please enter 'y' for yes or 'n' for no.");
+                continue;
+        }
     }
 }
